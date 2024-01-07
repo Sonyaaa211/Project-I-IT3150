@@ -1,3 +1,5 @@
+/*Analysis sales Order of an e-commerce company*/
+
 class Order{
     constructor(){
         this.CustomerID = "";

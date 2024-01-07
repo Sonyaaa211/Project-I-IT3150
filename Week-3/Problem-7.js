@@ -1,3 +1,5 @@
+//Simulation Queue
+
 class Queue {
     constructor() {
         this.items = [];

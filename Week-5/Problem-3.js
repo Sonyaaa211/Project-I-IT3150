@@ -1,4 +1,4 @@
-
+// Sequence of nodes visited by BFS
 
 function solution(graph){
 
@@ -27,16 +27,6 @@ function bfs(u){
         if(edges[u][v] == 1 && !visited[v]){
             visited[v] = true;
             q.push(v);
-        }
-    }
-}
-
-function dfs(u){
-    console.log(u);
-    visited[u] = true;
-    for(let v = 1; v <= graph.vertex; v++){
-        if(edges[u][v] == 1 && !visited[v]){
-            dfs(v);
         }
     }
 }

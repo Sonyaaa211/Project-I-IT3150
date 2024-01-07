@@ -1,3 +1,5 @@
+// Minimum Spanning Tree - Kruskal 
+
 function minimumSpanningTree(edges, N) {
     let adjList = Array.from({length: N}, () => []);
     for(let [u, v, w] of edges) {

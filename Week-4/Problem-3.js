@@ -1,3 +1,5 @@
+//Store & Search String
+
 class HashTable {
     constructor() {
       this.table = new Array(127);

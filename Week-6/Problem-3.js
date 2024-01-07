@@ -1,3 +1,5 @@
+/*Max Flow*/
+
 function MaxFlow(s, t, edges, n) {
     let adj = Array.from(Array(n), () => Array(n).fill(0));
     for(let [u, v, c] of edges) {

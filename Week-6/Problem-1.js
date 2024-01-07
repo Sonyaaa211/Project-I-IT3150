@@ -1,3 +1,4 @@
+/*All pair shortest paths*/
 function shortestPath(edges, N) {
     let dist = Array.from({length: N}, () => Array(N).fill(Infinity));
 

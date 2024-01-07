@@ -1,3 +1,5 @@
+/*Hamiton Cycle*/
+
 function isHamiltonian(graph, n, mask, u, v) {
     if (mask == (1 << n) - 1) {
         return graph[u][v];

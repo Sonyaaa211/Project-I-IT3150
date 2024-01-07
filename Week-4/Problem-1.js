@@ -1,3 +1,5 @@
+// Hash Over Strings
+
 function solution(n, m, strings) {
     let results = [];
     for (let i = 0; i < n; i++) {

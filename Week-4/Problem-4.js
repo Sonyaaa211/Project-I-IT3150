@@ -1,3 +1,5 @@
+//Sum pair of sequence equal to a number
+
 class HashTable {
     constructor() {
       this.table = new Array(127);

@@ -1,3 +1,5 @@
+/*Shortest Path between 2 nodes on a directed graph with non-negative weights*/
+
 function shortestPath(s, t, edges, N) {
     let dist = Array.from({length: N}, () => Array(N).fill(Infinity));
 

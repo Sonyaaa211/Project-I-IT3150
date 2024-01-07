@@ -1,3 +1,5 @@
+// Kiểm tra xuất hiện
+
 class HashTable {
     constructor() {
       this.table = new Array(127);

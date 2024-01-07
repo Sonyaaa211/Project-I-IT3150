@@ -1,3 +1,5 @@
+//Family tree
+
 class Node {
     constructor(name) {
         this.name = name;
