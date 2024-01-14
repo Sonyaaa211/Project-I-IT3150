@@ -1,18 +1,28 @@
-// Minimum Spanning Tree - Kruskal 
+project.problemInfo[36] =  "Minimum Spanning Tree - Kruskal"
 
-function minimumSpanningTree(edges, N) {
-    let adjList = Array.from({length: N}, () => []);
-    for(let [u, v, w] of edges) {
-        adjList[u-1].push([v-1, w]);
-        adjList[v-1].push([u-1, w]);
+project.solution_5_4 = function(input) {
+    let lines = input.split("\n");
+    let line = lines.shift().split(" ");
+    project.v = parseInt(line[0]);
+    let e = parseInt(line[1]);
+
+    let adjList = Array.from({length: project.v}, () => []);
+    for(let i = 0 ; i < e; i++){
+        line = lines.shift().split(" ");
+        let v1 = parseInt(line[0]);
+        let v2 = parseInt(line[1]);
+        let w = parseInt(line[2]);
+        adjList[v1-1].push([v2-1, w]);
+        adjList[v2-1].push([v1-1, w]);
     }
-    let key = Array(N).fill(Infinity);
-    let parent = Array(N).fill(-1);
-    let inMST = Array(N).fill(false);
+
+    let key = Array(project.v).fill(Infinity);
+    let parent = Array(project.v).fill(-1);
+    let inMST = Array(project.v).fill(false);
     key[0] = 0;
 
-    for(let count = 0; count < N-1; count++) {
-        let u = minKey(key, inMST);
+    for(let count = 0; count < project.v-1; count++) {
+        let u = project.minKey(key, inMST);
         inMST[u] = true;
 
         for(let [v, w] of adjList[u]) {
@@ -26,7 +36,7 @@ function minimumSpanningTree(edges, N) {
     return key.reduce((a, b) => a + b, 0);
 }
 
-function minKey(key, inMST) {
+project.minKey = function(key, inMST) {
     let min = Infinity;
     let minIndex = -1;
 
@@ -39,6 +49,3 @@ function minKey(key, inMST) {
 
     return minIndex;
 }
-let edges = [[1, 2, 1], [1, 3, 4], [1, 5, 1], [2, 4, 2], [2, 5, 1], [3, 4, 3], [3, 5, 3], [4, 5, 2]];
-let N = 5;
-console.log(minimumSpanningTree(edges, N));

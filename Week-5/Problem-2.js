@@ -1,43 +1,38 @@
-/*List order of nodes visited by a DFS*/
+project.problemInfo[34] = "List order of nodes visited by a DFS"
 
-function solution(graph){
-
-    for(let i = 0; i < graph.edges.length; i++){
-        let v1 = graph.edges[i][0];
-        let v2 = graph.edges[i][1];
-        edges[v1][v2] = 1;
-        edges[v2][v1] = 1;
+project.solution_5_2 = function(input){
+    let lines = input.split("\n");
+    let line = lines.shift().split(" ");
+    project.v = parseInt(line[0]);
+    let e = parseInt(line[1]);
+    project.visited = new Array(project.v + 1).fill(false);
+    
+    for (var i = 0; i <= project.v; i++) {
+        var tmp = [];
+        for (var j = 0; j <= project.v; j++){
+            tmp.push(0); 
+        }
+        project.edges.push(tmp);
     }
-    dfs(1);
+
+    for(let i = 0; i < e; i++){
+
+        line = lines.shift().split(" ");
+        let v1 = parseInt(line[0]) - 1;
+        let v2 = parseInt(line[1]) - 1;
+        project.edges[v1][v2] = 1;
+        project.edges[v2][v1] = 1;
+    }
+    project.dfs(1);
+    return project.res;
 }
 
-function dfs(u){
-    console.log(u);
-    visited[u] = true;
-    for(let v = 1; v <= graph.vertex; v++){
-        if(edges[u][v] == 1 && !visited[v]){
-            dfs(v);
+project.dfs = function(u){
+    project.res += u + " ";
+    project.visited[u] = true;
+    for(let i = 1; i <= project.v; i++){
+        if(project.edges[u-1][i-1] == 1 && !project.visited[i]){
+            project.dfs(i);
         }
     }
 }
-
-class Graph{
-    constructor(){
-        this.vertex = 0;
-        this.edges = [[]];
-    }
-}
-
-let graph = new Graph();
-graph.vertex = 7;
-var visited = new Array(graph.vertex).fill(false);
-var edges = [];
-for (var i = 0; i <= graph.vertex; i++) {
-    var tmp = [];
-    for (var j = 0; j <= graph.vertex; j++){
-        tmp.push(0); 
-    }
-    edges.push(tmp);
-}
-graph.edges = [[1, 2], [1, 3], [2, 3], [2, 4], [2, 7], [3, 5], [3, 7], [4, 5], [4, 6], [4, 7], [5, 6], [5, 6]];
-solution(graph);

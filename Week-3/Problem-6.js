@@ -1,6 +1,4 @@
-/*Perform a sequence of operations over a stack, each element is an integer:
-PUSH v: push a value v into the stack
-POP: remove an element out of the stack and print this element to stdout (print NULL if the stack is empty)*/
+project.problemInfo[26] = "Perform a sequence of operations over a stack, each element is an integer:\n\nPUSH v: push a value v into the stack\nPOP: remove an element out of the stack and print this element to stdout (print NULL if the stack is empty)"
 
  class Stack {
     constructor(){
@@ -13,7 +11,7 @@ POP: remove an element out of the stack and print this element to stdout (print 
 
     pop(){
         if (this.items.length == 0)
-            return "Underflow";
+            return "NULL";
         console.log(this.top());
         return this.items.pop();
     }
@@ -34,7 +32,7 @@ POP: remove an element out of the stack and print this element to stdout (print 
     }
 }
 
-function solution(input) {
+project.solution_3_6 = function(input) {
     let stack = new Stack();
     const lines = input.split("\n");
     for (let i = 0; i < lines.length - 1; i++) {
@@ -45,13 +43,13 @@ function solution(input) {
                 stack.push(a)
                 break;
             case "POP":
-                stack.pop();
+                project.res += stack.pop().toString() + "\n";
                 break;
             default:
                 break;
         }
     }
+    return project.res;
 }
 
 const input = `PUSH 1\nPUSH 2\nPUSH 3\nPOP\nPOP\nPUSH 4\nPUSH 5\nPOP\n#`;
-solution(input);

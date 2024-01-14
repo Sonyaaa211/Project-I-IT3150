@@ -1,7 +1,4 @@
-/*Viết chương trình thực hiện công việc sau:
-Xây dựng danh sách liên kết với các khóa được cung cấp ban đầu là dãy a, 
-sau đó thực hiện các thao tác trên danh sách bao gồm: 
-thêm 1 phần tử vào đầu, vào cuối danh sách, hoặc vào trước, vào sau 1 phần tử nào đó trong danh sách, hoặc loại bỏ 1 phần tử nào đó trong danh sách*/
+project.problemInfo[23] = "Viết chương trình thực hiện công việc sau:\nXây dựng danh sách liên kết với các khóa được cung cấp ban đầu là dãy a, \nsau đó thực hiện các thao tác trên danh sách bao gồm: \nthêm 1 phần tử vào đầu, vào cuối danh sách, hoặc vào trước, vào sau 1 phần tử nào đó trong danh sách, hoặc loại bỏ 1 phần tử nào đó trong danh sách"
 
 class Node {
     constructor(data) {
@@ -113,12 +110,12 @@ class LinkedList {
             result += current.data + ' ';
             current = current.next;
         }
-        console.log(result.trim());
+        return result.trim();
     }
 }
 
 
-function solution(input) {
+project.solution_3_3 = function(input) {
     let linkedList = new LinkedList();
     const lines = input.split("\n");
     const sequence = lines[1].split(" ").map(Number);
@@ -157,8 +154,7 @@ function solution(input) {
                 break;
         }
     }
-    linkedList.printList();
+    return linkedList.printList();
 }
 
 const input = `5\n5 4 3 2 1\naddlast 9\naddfirst 8\naddafter 10 4\nremove 1\n#`;
-solution(input);

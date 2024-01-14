@@ -1,8 +1,4 @@
-/*Write a program to compute the number of sudoku solutions (fill the zero elements of a given partial sudoku table)
-Fill numbers from 1, 2, 3, .., 9 to 9 x 9 table so that:
-Numbers of each row are distinct
-Numbers of each column are distinct
-Numbers on each sub-square 3 x 3 are distinct*/
+project.problemInfo[19] = "Write a program to compute the number of sudoku solutions (fill the zero elements of a given partial sudoku table)Fill numbers from 1, 2, 3, .., 9 to 9 x 9 table so that:\nNumbers of each row are distinct\nNumbers of each column are distinct\nNumbers on each sub-square 3 x 3 are distinct"
 
 let count = 0;
 
@@ -59,21 +55,28 @@ function solveSudoku(board, n) {
     }
 }
 
-function sudokuSolver(board) {
+project.solution_2_5 = function(input) {
+    let lines = input.split("\n");
+    for(let i = 0; i < 9; i++){
+        let line = lines.shift().split(" ").map(x => {return parseInt(x);});
+        for(let j = 0 ; j < 9; j++){
+            board[i][j] = line[j];
+        }
+    }
+    console.log(board);
     count = 0;
     solveSudoku(board, board.length);
     return count;
 }
 
 let board = [
-    [0, 0, 3, 4, 0, 0, 0, 8, 9],
-    [0, 0, 6, 7, 8, 9, 0, 2, 3],
-    [0, 8, 0, 0, 2, 3, 4, 5, 6],
-    [0, 0, 4, 0, 6, 5, 0, 9, 7],
-    [0, 6, 0, 0, 9, 0, 0, 1, 4],
-    [0, 0, 7, 2, 0, 4, 3, 6, 5],
-    [0, 3, 0, 6, 0, 2, 0, 7, 8],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
 ];
-console.log(sudokuSolver(board));

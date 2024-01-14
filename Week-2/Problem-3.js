@@ -1,25 +1,23 @@
-/*Given an integer n, write a program that generates all binary sequences without consecutive 11 in a lexicographic order.*/
-let res = [];
-let n;
-function check(c, k){
+project.problemInfo[17] = 
+"Given an integer n, write a program that generates all binary sequences without consecutive 11 in a lexicographic order."
+project.check23 = function(c, k){
     if(k == 0) return true;
-    if(c === 1 && res[k-1] === 1) return false;
+    if(c === 1 && project.arr[k-1] === 1) return false;
     return true;
 }
 
-function backtracking(k){
+project.backtracking23 = function(k){
     for(let i = 0; i <= 1; i++){
-        if(check(i, k)){
-            res[k] = i;
-            if(k == n-1) console.log(res);
-            else backtracking(k+1);
+        if(project.check23(i, k)){
+            project.arr[k] = i;
+            if(k == project.n-1) project.res += project.arr.map(x =>{return x.toString()}).join("") + "\n";
+            else project.backtracking23(k+1);
         } 
     }
 }
 
-solution = function(x){
-    n = x;
-    backtracking(0);
+project.solution_2_3 = function(x){
+    project.n = parseInt(x);
+    project.backtracking23(0);
+    return project.res;
 }
-
-solution(3);

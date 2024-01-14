@@ -1,4 +1,4 @@
-/*Analysis sales Order of an e-commerce company*/
+project.problemInfo[41] = "Analysis sales Order of an e-commerce company"
 
 class Order{
     constructor(){
@@ -10,35 +10,35 @@ class Order{
     }
 }
 
-let orders = [];
+project.orders = [];
 
-function TotalRevenue(){
+project.TotalRevenue = function(){
     let res = 0;
-    for(let i = 0; i < orders.length; i++){
-        res += orders[i].Price;
+    for(let i = 0; i < project.orders.length; i++){
+        res += project.orders[i].Price;
     }
     return res;
 }
 
-function ShopRevenue(shopID){
+project.ShopRevenue = function(shopID){
     let res = 0;
-    for(let i = 0; i < orders.length; i++){
-        if(orders[i].ShopID == shopID)
-        res += orders[i].Price;
+    for(let i = 0; i < project.orders.length; i++){
+        if(project.orders[i].ShopID == shopID)
+        res += project.orders[i].Price;
     }
     return res;
 }
 
-function TotalConsumeOfCustomerShop(customerID,shopID){
+project.TotalConsumeOfCustomerShop = function(customerID,shopID){
     let res = 0;
-    for(let i = 0; i < orders.length; i++){
-        if(orders[i].ShopID == shopID && orders[i].CustomerID == customerID)
-        res += orders[i].Price;
+    for(let i = 0; i < project.orders.length; i++){
+        if(project.orders[i].ShopID == shopID && project.orders[i].CustomerID == customerID)
+        res += project.orders[i].Price;
     }
     return res;
 }
 
-function IsEarlier(timeA, timeB){
+project.IsEarlier = function(timeA, timeB){
     if(parseInt(timeA[0]) < parseInt(timeB[0])){
         return true;
     }
@@ -63,39 +63,39 @@ function IsEarlier(timeA, timeB){
     }
 }
 
-function RevenueInPeriod(begin, end){
-    startTime = begin.split(":");
-    endTime = end.split(":");
+project.RevenueInPeriod = function(begin, end){
+    let startTime = begin.split(":");
+    let endTime = end.split(":");
     let res = 0;
-    for(let i = 0; i < orders.length; i++){
-        let time = orders[i].Time.split(":");
-        if(IsEarlier(startTime, time) && IsEarlier(time, endTime)){
-            res += orders[i].Price;
+    for(let i = 0; i < project.orders.length; i++){
+        let time = project.orders[i].Time.split(":");
+        if(project.IsEarlier(startTime, time) && project.IsEarlier(time, endTime)){
+            res += project.orders[i].Price;
         }
     }
     return res;
 }
 
-function AnalyzeSalesOrder(input){
+project.solution_7_2 = function(input){
     const lines = input.split('\n');
     
     for(let i = 0; i < lines.length; i++) {
         let query = lines[i].split(" ");
         switch (query[0]){
             case "?total_number_orders":
-                console.log(orders.length);
+                project.res += project.orders.length + "\n";
                 break;
             case "?total_revenue":
-                console.log(TotalRevenue());
+                project.res += project.TotalRevenue() + "\n";
                 break;
             case "?revenue_of_shop":
-                console.log(ShopRevenue(query[1]));
+                project.res += project.ShopRevenue(query[1]) + "\n";
                 break;
             case "?total_consume_of_customer_shop":
-                console.log(TotalConsumeOfCustomerShop(query[1], query[2]));
+                project.res += project.TotalConsumeOfCustomerShop(query[1], query[2]) + "\n";
                 break;
             case "?total_revenue_in_period":
-                console.log(RevenueInPeriod(query[1], query[2]));
+                project.res += project.RevenueInPeriod(query[1], query[2]) + "\n";
                 break;
             case "#":
 
@@ -107,11 +107,11 @@ function AnalyzeSalesOrder(input){
                 order.Price = parseInt(query[2]);
                 order.ShopID = query[3];
                 order.Time = query[4];
-                orders.push(order);
+                project.orders.push(order);
                 break;
         }
     }
+    return project.res;
 }
 
 var input = 'C001 P001 10 SHOP001 10:30:10\nC001 P002 30 SHOP001 12:30:10\nC003 P001 40 SHOP002 10:15:20\nC001 P001 80 SHOP002 08:40:10\nC002 P001 130 SHOP001 10:30:10\nC002 P001 160 SHOP003 11:30:20\n#\n?total_number_orders\n?total_revenue\n?revenue_of_shop SHOP001\n?total_consume_of_customer_shop C001 SHOP001 \n?total_revenue_in_period 10:00:00 18:40:45\n#'
-AnalyzeSalesOrder(input);

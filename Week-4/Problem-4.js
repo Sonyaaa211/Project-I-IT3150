@@ -1,4 +1,4 @@
-//Sum pair of sequence equal to a number
+project.problemInfo[32] = "Sum pair of sequence equal to a number"
 
 class HashTable {
     constructor() {
@@ -34,7 +34,10 @@ class HashTable {
     }
 }
 
-function solution(m ,arr){
+project.solution_4_4 = function(input){
+    let lines = input.split("\n");
+    let m = parseInt(lines.shift().split(" ")[1]);
+    let arr = lines[0].split(" ");
     let hashTable = new HashTable();
     let res = 0;
     for(let i = 0; i < arr.length; i++){
@@ -45,8 +48,5 @@ function solution(m ,arr){
             hashTable.set(arr[i], 1);
         }
     }
-    console.log(res);
+    return res;
 }
-let m = 6;
-let arr = [5, 2, 1, 4, 3];
-solution(6 ,arr);

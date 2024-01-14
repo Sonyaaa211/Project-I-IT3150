@@ -1,4 +1,4 @@
-// Kiểm tra xuất hiện
+project.problemInfo[30] =  "Kiểm tra xuất hiện"
 
 class HashTable {
     constructor() {
@@ -34,16 +34,17 @@ class HashTable {
     }
 }
 
-function solution(arr){
+project.solution_4_2 = function(input){
+    let lines = input.split("\n");
+    lines.shift();
+    let arr = lines[0].split(" ");
     let hashTable = new HashTable();
     for(let i = 0; i < arr.length; i++){
-        if(hashTable.get(arr[i]) != null) console.log(1);
+        if(hashTable.get(arr[i]) != null) project.res += 1 +"\n";
         else {
-            console.log(0);
+            project.res += 0 +"\n";
             hashTable.set(arr[i], 1);
         }
     }
+    return project.res;
 }
-
-let arr = [1, 4, 3, 1, 4];
-solution(arr);

@@ -1,19 +1,29 @@
-/*Shortest Path between 2 nodes on a directed graph with non-negative weights*/
+project.problemInfo[38] = "Shortest Path between 2 nodes on a directed graph with non-negative weights"
 
-function shortestPath(s, t, edges, N) {
-    let dist = Array.from({length: N}, () => Array(N).fill(Infinity));
+project.solution_6_2 = function(input) {
+    let lines = input.split("\n");
+    let line = lines.shift().split(" ");
+    project.v = parseInt(line[0]);
+    let e = parseInt(line[1]);
+    let dist = Array.from({length: project.v}, () => Array(project.v).fill(Infinity));
 
-    for(let i = 0; i < N; i++) {
+    for(let i = 0; i < project.v; i++) {
         dist[i][i] = 0;
     }
 
-    for(let [u, v, w] of edges) {
-        dist[u-1][v-1] = w;
+    for(let i = 0 ; i < e; i++){
+        line = lines.shift().split(" ");
+        let v1 = parseInt(line[0]);
+        let v2 = parseInt(line[1]);
+        let w = parseInt(line[2]);
+        dist[v1-1][v2-1] = w;
     }
-
-    for(let k = 0; k < N; k++) {
-        for(let i = 0; i < N; i++) {
-            for(let j = 0; j < N; j++) {
+    line = lines.shift().split(" ");
+    let s = line[0];
+    let t = line[1];
+    for(let k = 0; k < project.v; k++) {
+        for(let i = 0; i < project.v; i++) {
+            for(let j = 0; j < project.v; j++) {
                 if(dist[i][k] + dist[k][j] < dist[i][j]) {
                     dist[i][j] = dist[i][k] + dist[k][j];
                 }
@@ -21,8 +31,8 @@ function shortestPath(s, t, edges, N) {
         }
     }
 
-    for(let i = 0; i < N; i++) {
-        for(let j = 0; j < N; j++) {
+    for(let i = 0; i < project.v; i++) {
+        for(let j = 0; j < project.v; j++) {
             if(dist[i][j] === Infinity) {
                 dist[i][j] = -1;
             }
@@ -31,7 +41,3 @@ function shortestPath(s, t, edges, N) {
 
     return dist[s-1][t-1];
 }
-
-let edges = [[1, 2, 97], [3, 1, 72], [1, 4, 19], [2, 5, 87], [2, 3, 63], [4, 5, 78], [5, 1, 18]];
-let N = 5;
-console.log(shortestPath(1, 5, edges, N));

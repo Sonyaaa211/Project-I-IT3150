@@ -1,4 +1,4 @@
-//Family tree
+project.problemInfo[28] = "Family tree"
 
 class Node {
     constructor(name) {
@@ -47,17 +47,17 @@ class FamilyTree {
     }
 }
 
-function solution(input) {
+project.solution_3_8 = function(input) {
     let ft = new FamilyTree();
     const lines = input.split("\n");
     for (let i = 0; i < lines.length - 1; i++) {
         const query = lines[i].split(" ");
         switch (query[0]){
             case "descendants":
-                console.log(ft.countDescendants(query[1]))
+                project.res += ft.countDescendants(query[1]) + "\n";
                 break;
             case "generation":
-                console.log(ft.countGenerations(query[1])-1)
+                project.res += ft.countGenerations(query[1])-1 + "\n";
                 break;
             case "***":
                 break;
@@ -66,7 +66,7 @@ function solution(input) {
                 break;
         }
     }
+    return project.res;
 }
 
 const input = `Peter Newman\nMichael Thomas\nJohn David\nPaul Mark\nStephan Mark\nPierre Thomas\nMark Newman\nBill David\nDavid Newman\nThomas Mark\n***\ndescendants Newman\ndescendants Mark\ndescendants David\ngeneration Mark\n***`;
-solution(input);

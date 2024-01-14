@@ -1,4 +1,4 @@
-//Simulation Queue
+project.problemInfo[27] = "Simulation Queue"
 
 class Queue {
     constructor() {
@@ -11,8 +11,7 @@ class Queue {
 
     pop() {
         if (this.isEmpty()) {
-            console.log(null);
-            return;
+            return "null";
         }
         console.log(this.items[0]);
         return this.items.shift();
@@ -23,7 +22,7 @@ class Queue {
     }
 }
 
-function solution(input) {
+project.solution_3_7 = function(input) {
     let queue = new Queue();
     const lines = input.split("\n");
     for (let i = 0; i < lines.length - 1; i++) {
@@ -34,12 +33,13 @@ function solution(input) {
                 queue.push(a)
                 break;
             case "POP":
-                queue.pop();
+                project.res += queue.pop() + "\n";
                 break;
             default:
                 break;
         }
     }
+    return project.res;
 }
 
 const input = `PUSH 1\nPUSH 2\nPUSH 3\nPOP\nPOP\nPUSH 4\nPUSH 5\nPOP\n#`;

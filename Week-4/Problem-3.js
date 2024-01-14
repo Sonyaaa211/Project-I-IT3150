@@ -1,4 +1,4 @@
-//Store & Search String
+project.problemInfo[31] = "Store & Search String"
 
 class HashTable {
     constructor() {
@@ -38,7 +38,7 @@ class HashTable {
     }
 }
 
-function solution(input){
+project.solution_4_3 = function(input){
     let ht = new HashTable();
     const lines = input.split("\n");
     for (let i = 0; i < lines.length - 1; i++) {
@@ -46,15 +46,15 @@ function solution(input){
         switch (query[0]){
             case "find":
                 if(ht.get(query[1]) != undefined)
-                    console.log(1);
-                else console.log(0);
+                    project.res += 1 + "\n";
+                else project.res += 0 + "\n";
                 break;
             case "insert":
                 if(ht.get(query[1]) == undefined){
                     ht.set(query[1], 1);
-                    console.log(1);
+                    project.res += 1 + "\n";
                 }
-                else console.log(0);
+                else project.res += 0 + "\n";
                 break;
             case "***":
             case "*":
@@ -64,7 +64,5 @@ function solution(input){
                 break;
         }
     }
+    return project.res;
 }
-
-input = 'computer\nuniversity\nschool\ntechnology\nphone\n*\nfind school\nfind book\ninsert book\nfind algorithm\nfind book\ninsert book\n***';
-solution(input);

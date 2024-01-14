@@ -1,6 +1,12 @@
-/*Given an equation ax^2 + bx + c = 0. Find solution to the given equation.*/
+project.problemInfo[14] = 
+"Given an equation ax^2 + bx + c = 0. Find solution to the given equation.\nExample input:\n1 2 3";
 
-solution = function(a, b, c){
+window.project = window.project || {};
+project.solution_1_14 = function(input) {
+    const lines = input.split(" ");
+    let a = parseInt(lines[0]);
+    let b = parseInt(lines[1]);
+    let c = parseInt(lines[2]);
     if(a === 0){
         if(b == 0) return "NO SOLUTION";
         else return c/b;
@@ -14,5 +20,3 @@ solution = function(a, b, c){
         }
     }
 }
-
-console.log(solution(1, -7, 10));

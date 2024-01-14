@@ -1,32 +1,51 @@
-// Sequence of nodes visited by BFS
+project.problemInfo[35] = "Sequence of nodes visited by BFS"
 
-function solution(graph){
-
-    for(let i = 0; i < graph.edges.length; i++){
-        let v1 = graph.edges[i][0];
-        let v2 = graph.edges[i][1];
-        edges[v1][v2] = 1;
-        edges[v2][v1] = 1;
+project.solution_5_3 = function(input){
+    project.q = new Queue();
+    let lines = input.split("\n");
+    let line = lines.shift().split(" ");
+    project.v = parseInt(line[0]);
+    let e = parseInt(line[1]);
+    project.visited = new Array(project.v + 1).fill(false);
+    
+    for (var i = 0; i <= project.v; i++) {
+        var tmp = [];
+        for (var j = 0; j <= project.v; j++){
+            tmp.push(0); 
+        }
+        project.edges.push(tmp);
     }
-    for(let i = 1; i <= graph.vertex; i++){
-        if(!visited[i]){
-            visited[i] = true;
-            q.push(i);
-            while(!q.empty()){
-                let tmp = q.front();
-                q.pop();
-                bfs(tmp);
+
+    for(let i = 0; i < e; i++){
+
+        line = lines.shift().split(" ");
+        let v1 = parseInt(line[0]) - 1;
+        let v2 = parseInt(line[1]) - 1;
+        project.edges[v1][v2] = 1;
+        project.edges[v2][v1] = 1;
+    }
+    for(let i = 1; i <= project.v; i++){
+        if(!project.visited[i]){
+            project.visited[i] = true;
+            project.q.push(i);
+            while(!project.q.empty()){
+                let tmp = project.q.front();
+                project.q.pop();
+                project.bfs(tmp);
             }
         }
     }
+    return project.res;
 }
 
-function bfs(u){
-    console.log(u);
-    for(let v = 1; v <= graph.vertex; v++){
-        if(edges[u][v] == 1 && !visited[v]){
-            visited[v] = true;
-            q.push(v);
+project.q = new Queue();
+
+project.bfs = function(u){
+    project.res += u + " ";
+    for(let v = 1; v <= project.v; v++){
+        if(project.edges[u-1][v-1] == 1 && !project.visited[v]){
+            project.visited[v] = true;
+            project.q.push(v);
         }
     }
 }
@@ -61,18 +80,3 @@ class Queue {
         return this.items.length === 0;
     }
 }
-
-let graph = new Graph();
-graph.vertex = 6;
-var visited = new Array(graph.vertex).fill(false);
-var edges = [];
-for (var i = 0; i <= graph.vertex; i++) {
-    var tmp = [];
-    for (var j = 0; j <= graph.vertex; j++){
-        tmp.push(0); 
-    }
-    edges.push(tmp);
-}
-let q = new Queue();
-graph.edges = [[2, 4], [1, 3], [3, 4], [5, 6], [1, 2], [3, 5], [2, 3]];
-solution(graph);

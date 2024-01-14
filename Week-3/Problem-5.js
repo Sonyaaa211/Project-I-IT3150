@@ -1,4 +1,4 @@
-//Tree manipulation & Traversal
+project.problemInfo[25] = "Tree manipulation & Traversal"
 
 class Node {
     constructor(id) {
@@ -58,7 +58,7 @@ class Tree {
     }
 }
 
-function solution(input) {
+project.solution_3_5 = function(input) {
     let tree = new Tree();
     const lines = input.split("\n");
     for (let i = 0; i < lines.length - 1; i++) {
@@ -74,18 +74,19 @@ function solution(input) {
                 tree.insert(b, c);
                 break;
             case "PreOrder":
-                console.log(tree.preOrder(tree.root));
+                project.res += tree.preOrder(tree.root) + "\n";
                 break;
             case "InOrder":
-                console.log(tree.inOrder(tree.root));
+                project.res += tree.inOrder(tree.root) + "\n";
                 break;
             case "PostOrder":
-                console.log(tree.postOrder(tree.root));
+                project.res += tree.postOrder(tree.root) + "\n";
                 break;
             default:
                 break;
         }
     }
+    return project.res;
 }
 
 const input = `MakeRoot 10\nInsert 11 10\nInsert 1 10\nInsert 3 10\nInsert 5 11\nInsert 4 11\nInsert 8 3\nInsert 2 3\nInsert 7 3\nInsert 6 4\nInsert 9 4\nInOrder \nPostOrder\nPreOrder\n*`;

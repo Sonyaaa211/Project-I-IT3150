@@ -1,14 +1,16 @@
-/*There are two jugs, a-litres jug and b-litres jug (a, b are positive integers). There is a pump with unlimited water. Given a positive integer c, how to get exactly c litres.*/
+project.problemInfo[22] = "There are two jugs, a-litres jug and b-litres jug (a, b are positive integers). \nThere is a pump with unlimited water. Given a positive integer c, how to get exactly c litres.\n\n\nExample input:\n\n536 978 24"
 
-function gcd(a, b){
+project.gcd = function(a, b){
     if(b == 0){
         return a;
     }
-    return gcd(b, a%b);
+    return project.gcd(b, a%b);
 }
 
-function solution(a, b, c){
-    if (c > Math.max(a, b) || c % gcd(a, b) != 0) return -1;
+project.solution_3_2 = function(input){
+    let lines = input.split(" ");
+    let a = parseInt(lines[0]), b = parseInt(lines[1]), c = parseInt(lines[2]);
+    if (c > Math.max(a, b) || c % project.gcd(a, b) != 0) return -1;
     else {
         let steps = 0;
         let x = 0, y = 0;
@@ -31,5 +33,3 @@ function solution(a, b, c){
         return steps;
     }
 }
-
-console.log(solution(536, 978, 24));

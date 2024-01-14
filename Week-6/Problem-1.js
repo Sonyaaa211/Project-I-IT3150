@@ -1,18 +1,27 @@
-/*All pair shortest paths*/
-function shortestPath(edges, N) {
-    let dist = Array.from({length: N}, () => Array(N).fill(Infinity));
+project.problemInfo[37] = "All pair shortest paths"
+project.solution_6_1 = function(input) {
 
-    for(let i = 0; i < N; i++) {
+    let lines = input.split("\n");
+    let line = lines.shift().split(" ");
+    project.v = parseInt(line[0]);
+    let e = parseInt(line[1]);
+
+    let dist = Array.from({length: project.v}, () => Array(project.v).fill(Infinity));
+
+    for(let i = 0; i < project.v; i++) {
         dist[i][i] = 0;
     }
-
-    for(let [u, v, w] of edges) {
-        dist[u-1][v-1] = w;
+    for(let i = 0 ; i < e; i++){
+        line = lines.shift().split(" ");
+        let v1 = parseInt(line[0]);
+        let v2 = parseInt(line[1]);
+        let w = parseInt(line[2]);
+        dist[v1-1][v2-1] = w;
     }
 
-    for(let k = 0; k < N; k++) {
-        for(let i = 0; i < N; i++) {
-            for(let j = 0; j < N; j++) {
+    for(let k = 0; k < project.v; k++) {
+        for(let i = 0; i < project.v; i++) {
+            for(let j = 0; j < project.v; j++) {
                 if(dist[i][k] + dist[k][j] < dist[i][j]) {
                     dist[i][j] = dist[i][k] + dist[k][j];
                 }
@@ -20,17 +29,14 @@ function shortestPath(edges, N) {
         }
     }
 
-    for(let i = 0; i < N; i++) {
-        for(let j = 0; j < N; j++) {
+    for(let i = 0; i < project.v; i++) {
+        for(let j = 0; j < project.v; j++) {
             if(dist[i][j] === Infinity) {
                 dist[i][j] = -1;
             }
+            project.res += dist[i][j] + " ";
         }
+        project.res += "\n";
     }
-
-    return dist;
+    return project.res;
 }
-
-let edges = [[1, 2, 9], [1, 3, 7], [1, 4, 2], [2, 1, 1], [2, 4, 5], [3, 4, 6], [3, 2, 2], [4, 1, 5], [4, 2, 8]];
-let N = 4;
-console.log(shortestPath(edges, N));
